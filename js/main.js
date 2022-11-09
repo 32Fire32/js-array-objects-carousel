@@ -91,7 +91,7 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
         thumbimage[active].classList.add('thumbselected');
     }
 );
-let up = false;
+let up;
 let autoplay;
 let stopauto;
 startBtn.addEventListener('click', function(){
@@ -133,19 +133,24 @@ function loopdown() {
 }
 
 function inverseLoop() {
-    if(up === false){
+    if(up === true){
+        clearInterval(stopauto);
+        up = false;
+        autoplay = setInterval(loopup, 3000);
+        console.log(up);
+
+    } else {
         clearInterval(autoplay);
         up = true;
         stopauto = setInterval(loopdown, 3000);
-    } else {
-        clearInterval(stopauto);
-        setInterval(loopup, 3000);
+        console.log(up);
     }
 }
 
-function loopStop(x) {
-    clearInterval(x);
-  }
+// function loopStop(x) {
+//     clearInterval(x);
+//   }
+
     
 carouselContainer.append(carouseljs);
 
