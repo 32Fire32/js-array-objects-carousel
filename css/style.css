@@ -21,6 +21,14 @@ body {
     width: 1000px;
     height: 500px;
     display: flex;
+    position: relative;
+}
+
+.autoplay-functions {
+    position: absolute;
+    top: 10px;
+    right: 310px;
+    z-index: 10;
 }
 
 .main-image img {
@@ -40,7 +48,6 @@ body {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    z-index: 10;
 }
 
 .thumbnails img {
@@ -107,6 +114,11 @@ body {
     color: #fff;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover{
+    background-color: black;
+    cursor: pointer;
 }
 
 

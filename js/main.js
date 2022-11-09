@@ -1,4 +1,9 @@
 'strict mode'
+
+// FUNZIONI
+
+
+
 const images = [
     {
         image: 'img/01.webp',
@@ -31,6 +36,10 @@ let thumbimage = carouseljs.querySelectorAll('.thumbnail');
 
 let carouselContainer = document.querySelector('.container');
 
+let startBtn = carouseljs.querySelector('.btn-start');
+let stopBtn = carouseljs.querySelector('.btn-stop');
+let inverseBtn = carouseljs.querySelector('.btn-inverse');
+
 
 for (let i = 0; i < images.length; i++){
     console.log(images[i].image);
@@ -57,7 +66,7 @@ for (let i = 0; i < images.length; i++){
 let active= 0;
 
 carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
-    console.log('clickdown');
+    console.log('clickup');
     mainImage[active].classList.remove('selected');
     thumbimage[active].classList.remove('thumbselected');
         if( active === 0 ) {
@@ -70,7 +79,7 @@ carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
 });
 
 carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
-    console.log('clickup');
+    console.log('clickdown');
         mainImage[active].classList.remove('selected');
         thumbimage[active].classList.remove('thumbselected');
         if ( active === images.length - 1) {
@@ -83,7 +92,17 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
     }
 );
 
-setInterval(function() {
+let autoplay;
+startBtn.addEventListener('click', function(){
+    setInterval(loop, 3000);
+});
+
+stopBtn.addEventListener('click', loopStop(autoplay));
+
+// inverseBtn.addEventListener('click', inverseLoop());
+
+function loop() {
+    console.log('clickup');
     mainImage[active].classList.remove('selected');
     thumbimage[active].classList.remove('thumbselected');
         if( active === 0 ) {
@@ -93,7 +112,25 @@ setInterval(function() {
         }
         mainImage[active].classList.add('selected');
     thumbimage[active].classList.add('thumbselected');
-}, 3000);
+}
+
+// function inverseLoop() {
+//     loopStop();
+//     console.log('clickdown');
+//     mainImage[active].classList.remove('selected');
+//     thumbimage[active].classList.remove('thumbselected');
+//     if ( active === images.length - 1) {
+//         active = 0;
+//     } else {
+//         active++;
+//     }
+//     mainImage[active].classList.add('selected');  
+//     thumbimage[active].classList.add('thumbselected');
+// }
+
+function loopStop(x) {
+    clearInterval(x);
+  }
     
 carouselContainer.append(carouseljs);
 
