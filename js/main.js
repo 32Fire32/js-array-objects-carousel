@@ -91,18 +91,22 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
         thumbimage[active].classList.add('thumbselected');
     }
 );
-
+let up = false;
 let autoplay;
+let stopauto;
 startBtn.addEventListener('click', function(){
-    autoplay = setInterval(loop, 3000);
+    autoplay = setInterval(loopup, 3000);
 });
 
 stopBtn.addEventListener('click', function(){
     clearInterval(autoplay);
 });
-// inverseBtn.addEventListener('click', inverseLoop());
 
-function loop() {
+inverseBtn.addEventListener('click', function(){
+    inverseLoop();
+});
+
+function loopup() {
     console.log('clickup');
     mainImage[active].classList.remove('selected');
     thumbimage[active].classList.remove('thumbselected');
@@ -115,19 +119,29 @@ function loop() {
     thumbimage[active].classList.add('thumbselected');
 }
 
-// function inverseLoop() {
-//     loopStop();
-//     console.log('clickdown');
-//     mainImage[active].classList.remove('selected');
-//     thumbimage[active].classList.remove('thumbselected');
-//     if ( active === images.length - 1) {
-//         active = 0;
-//     } else {
-//         active++;
-//     }
-//     mainImage[active].classList.add('selected');  
-//     thumbimage[active].classList.add('thumbselected');
-// }
+function loopdown() {
+    console.log('clickdown');
+    mainImage[active].classList.remove('selected');
+    thumbimage[active].classList.remove('thumbselected');
+    if ( active === images.length - 1) {
+        active = 0;
+    } else {
+        active++;
+    }
+    mainImage[active].classList.add('selected');  
+    thumbimage[active].classList.add('thumbselected');
+}
+
+function inverseLoop() {
+    if(up === false){
+        clearInterval(autoplay);
+        up = true;
+        stopauto = setInterval(loopdown, 3000);
+    } else {
+        clearInterval(stopauto);
+        setInterval(loopup, 3000);
+    }
+}
 
 function loopStop(x) {
     clearInterval(x);
