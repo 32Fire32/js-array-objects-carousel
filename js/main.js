@@ -27,6 +27,7 @@ const carouseljs = document.getElementById("carousel-template").content.cloneNod
 
 
 let mainImage = carouseljs.querySelectorAll('.hid');
+let thumbimage = carouseljs.querySelectorAll('.thumbnail');
 
 let carouselContainer = document.querySelector('.container');
 
@@ -46,29 +47,33 @@ for (let i = 0; i < images.length; i++){
 }
 
 let active= 0;
-carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
-    console.log('clickup');
-        console.log(mainImage[0]);
-        mainImage[active].classList.remove('selected');
-        if ( active === images.length - 1) {
-            active = 0;
-        } else {
-            active++;
-        }
-        mainImage[active].classList.add('selected');  
-    }
-);
 
-carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
+carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
     console.log('clickdown');
     mainImage[active].classList.remove('selected');
+    thumbimage[active].classList.remove('thumbselected');
         if( active === 0 ) {
             active = images.length -1;
         } else {
             active--;
         }
         mainImage[active].classList.add('selected');
+    thumbimage[active].classList.add('thumbselected');
 });
+
+carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
+    console.log('clickup');
+        mainImage[active].classList.remove('selected');
+        thumbimage[active].classList.remove('thumbselected');
+        if ( active === images.length - 1) {
+            active = 0;
+        } else {
+            active++;
+        }
+        mainImage[active].classList.add('selected');  
+        thumbimage[active].classList.add('thumbselected');
+    }
+);
     
 carouselContainer.append(carouseljs);
 

@@ -64,6 +64,10 @@ body {
     border: 2px solid #fff;
 }
 
+.thumbselected {
+    border: 2px solid #fff;
+}
+
 .arrow-up {
     color: #fff;
     position: absolute;
