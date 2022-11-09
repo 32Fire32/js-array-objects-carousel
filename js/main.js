@@ -23,8 +23,8 @@ const images = [
     }
 ];
 
-const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
 
+const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
 
 let mainImage = carouseljs.querySelectorAll('.hid');
 let thumbimage = carouseljs.querySelectorAll('.thumbnail');
@@ -34,16 +34,24 @@ let carouselContainer = document.querySelector('.container');
 
 for (let i = 0; i < images.length; i++){
     console.log(images[i].image);
- 
+
     //immagini principali
+    let dinamicImage = carouseljs.querySelector(`.id-${i} img`);
     carouseljs.querySelector(`.id-${i} img`).src = images[i].image;
 
     //thumbnails    
     carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
+    carouseljs.querySelector(`.thumb-${i}`).addEventListener('click', function(){
+        console.log(`thumbclicked ${i}`);
+        dinamicImage.src = images[i].image;
+    })
 
     // //testo
-    carouseljs.querySelector('h2.title').innerHtml = images[i].title;
-    carouseljs.querySelector('p.description').innerHtml = images[i].text;
+    let title = document.createTextNode( images[i].title );
+    carouseljs.querySelector(`.title-${i}`).appendChild( title );
+
+    let descr = document.createTextNode( images[i].text );
+    carouseljs.querySelector(`.description-${i}`).appendChild( descr );
 }
 
 let active= 0;
@@ -74,6 +82,18 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
         thumbimage[active].classList.add('thumbselected');
     }
 );
+
+setInterval(function() {
+    mainImage[active].classList.remove('selected');
+    thumbimage[active].classList.remove('thumbselected');
+        if( active === 0 ) {
+            active = images.length -1;
+        } else {
+            active--;
+        }
+        mainImage[active].classList.add('selected');
+    thumbimage[active].classList.add('thumbselected');
+}, 3000);
     
 carouselContainer.append(carouseljs);
 

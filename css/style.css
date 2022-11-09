@@ -28,6 +28,7 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: right;
+    display: block;
 }
 
 .main-image {
@@ -35,7 +36,7 @@ body {
 }
 
 .main-text {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -61,7 +62,7 @@ body {
 }
 
 .thumbnails img:hover {
-    border: 2px solid #fff;
+    border: 2px solid red;
 }
 
 .thumbselected {
@@ -100,6 +101,12 @@ body {
 
 .selected {
     display: block;
+}
+
+.btn {
+    color: #fff;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
