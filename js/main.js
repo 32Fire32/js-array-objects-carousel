@@ -94,11 +94,12 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
 
 let autoplay;
 startBtn.addEventListener('click', function(){
-    setInterval(loop, 3000);
+    autoplay = setInterval(loop, 3000);
 });
 
-stopBtn.addEventListener('click', loopStop(autoplay));
-
+stopBtn.addEventListener('click', function(){
+    clearInterval(autoplay);
+});
 // inverseBtn.addEventListener('click', inverseLoop());
 
 function loop() {
