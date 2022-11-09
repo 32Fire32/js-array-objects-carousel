@@ -15,7 +15,6 @@ body {
 
 .container {    
     margin:auto;
-    background-color:blue;
 }
 
 .carousel {
@@ -40,6 +39,7 @@ body {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    z-index: 10;
 }
 
 .thumbnails img {
@@ -53,12 +53,10 @@ body {
 .main-image {
     width: 70%;
     height: 100%;
-    background-color: aqua;
 }
 
 .thumbnails {
     width: 30%;
-    background-color: blueviolet;
     position: relative;
 }
 
@@ -92,6 +90,12 @@ body {
     cursor: pointer;
 }
 
-.selected {
-    border: 2px solid #fff;
+.hid {
+    display: none;
 }
+
+.selected {
+    display: block;
+}
+
+

@@ -23,30 +23,52 @@ const images = [
     }
 ];
 
-let carouselContainer = document.querySelector('.container');
-
 const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
 
-//immagine principale
-carouseljs.querySelector('.main-image img').src = images[2].image;
 
-//thumbnails
+let mainImage = carouseljs.querySelectorAll('.hid');
+
+let carouselContainer = document.querySelector('.container');
+
+
 for (let i = 0; i < images.length; i++){
-    console.log(i);
     console.log(images[i].image);
-    
+
+    //immagini principali
+    carouseljs.querySelector(`.id-${i} img`).src = images[i].image;
+
+    //thumbnails    
     carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
-    // carouseljs.querySelector(`.thumb-${i} img`).addEventListener('click', function(){
-    //     carouseljs.querySelector('.main-image img').src = images[i].image;
-    // })
+
+    // //testo
+    carouseljs.querySelector('h2.title').innerHtml = images[i].title;
+    carouseljs.querySelector('p.description').innerHtml = images[i].text;
 }
 
-    carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
-        console.log('clickup');
-    });
-    carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
-        console.log('clickdown');
-    });
+let active= 0;
+carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
+    console.log('clickup');
+        console.log(mainImage[0]);
+        mainImage[active].classList.remove('selected');
+        if ( active === images.length - 1) {
+            active = 0;
+        } else {
+            active++;
+        }
+        mainImage[active].classList.add('selected');  
+    }
+);
 
+carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
+    console.log('clickdown');
+    mainImage[active].classList.remove('selected');
+        if( active === 0 ) {
+            active = images.length -1;
+        } else {
+            active--;
+        }
+        mainImage[active].classList.add('selected');
+});
+    
 carouselContainer.append(carouseljs);
 
