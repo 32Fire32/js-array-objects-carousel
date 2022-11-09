@@ -27,6 +27,20 @@ let carouselContainer = document.querySelector('.container');
 
 const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
 
+//immagine principale
+carouseljs.querySelector('.main-image img').src = images[2].image;
+
+//thumbnails
+for (let i = 0; i < images.length; i++){
+    console.log(i);
+    console.log(images[i].image);
+    
+    carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
+    // carouseljs.querySelector(`.thumb-${i} img`).addEventListener('click', function(){
+    //     carouseljs.querySelector('.main-image img').src = images[i].image;
+    // })
+}
+
     carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
         console.log('clickup');
     });
@@ -36,7 +50,3 @@ const carouseljs = document.getElementById("carousel-template").content.cloneNod
 
 carouselContainer.append(carouseljs);
 
-images.forEach(element => {
-    // console.log(element);
-    
-});
