@@ -34,7 +34,7 @@ let carouselContainer = document.querySelector('.container');
 
 for (let i = 0; i < images.length; i++){
     console.log(images[i].image);
-
+ 
     //immagini principali
     carouseljs.querySelector(`.id-${i} img`).src = images[i].image;
 
