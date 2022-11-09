@@ -4,3 +4,73 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color: rgb(5, 5, 34);
+    height: 100vh;
+    display: flex;
+}
+
+.container {    
+    margin:auto;
+    background-color:blue;
+}
+
+.carousel {
+    width: 1000px;
+    height: 500px;
+    display: flex;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnails img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    object-position: center;
+}
+
+
+.main-image {
+    width: 70%;
+    height: 100%;
+    background-color: aqua;
+}
+
+.thumbnails {
+    width: 30%;
+    background-color: blueviolet;
+    position: relative;
+}
+
+.arrow-up {
+    color: #fff;
+    position: absolute;
+    top:5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.arrow-down {
+    color: #fff;
+    position: absolute;
+    bottom:-2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
