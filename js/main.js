@@ -1,5 +1,4 @@
 'strict mode'
-
 const images = [
     {
         image: 'img/01.webp',
@@ -23,16 +22,21 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
 let carouselContainer = document.querySelector('.container');
+
 const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
+
     carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
         console.log('clickup');
     });
     carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
         console.log('clickdown');
     });
-    carouselContainer.append(carouseljs);
+
+carouselContainer.append(carouseljs);
+
 images.forEach(element => {
-    console.log(element);
+    // console.log(element);
     
 });
