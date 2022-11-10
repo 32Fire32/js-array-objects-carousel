@@ -1,8 +1,5 @@
 'strict mode'
 
-// FUNZIONI
-
-
 
 const images = [
     {
@@ -28,7 +25,9 @@ const images = [
     }
 ];
 
+// DICHIARAZIONI OGGETTI DOM
 
+// template
 const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
 
 let mainImage = carouseljs.querySelectorAll('.hid');
@@ -40,7 +39,9 @@ let startBtn = carouseljs.querySelector('.btn-start');
 let stopBtn = carouseljs.querySelector('.btn-stop');
 let inverseBtn = carouseljs.querySelector('.btn-inverse');
 
+let active= 0;
 
+// VERSIONE CICLO FOREACH
 images.forEach((elm, i) => {
     console.log(elm.image);
 
@@ -49,12 +50,51 @@ images.forEach((elm, i) => {
     dinamicImage.src = images[i].image;
 
     //thumbnails
-    let imageDiv = carouseljs.querySelector(`.id-${i}`);
     carouseljs.querySelector(`.thumb-${i} img`).src = elm.image;
-    carouseljs.querySelector(`.thumb-${i}`).addEventListener('click', function(){
-        console.log(`thumbclicked ${i}`);
-        imageDiv.classList.remove(`.id-${i}`);           
-        // imageDiv.classList.add('selected');
+
+    let thumb = carouseljs.querySelector(`.thumb-${i}`);
+
+    let imageDivOut = carouseljs.querySelector(`.main-image`);
+    let imageDivIn = carouseljs.querySelector(`.id-${i}`);
+
+    let click;
+    thumb.addEventListener('click', function(){
+        console.log(i);
+        // thumb.classList.toggle(`this${thumbClickEvent}`);
+        // console.log(selectedImg);
+        // imageDivOut.classList.remove(`selected`);
+        // console.log("sono fuori dalla condizione e il click è " + click);
+
+        // if (click === true){
+        //     click = false;
+        //     console.log("sono nell'if e il click è " + click)
+        //     imageDivOut.classList.remove(`selected`);                  
+        //     imageDivIn.classList.add('selected');
+
+        // } else if (click === false) {      
+        //     imageDivOut.classList.remove(`selected`);                  
+        //     imageDivIn.classList.add('selected');
+        //     click = true;
+        //     console.log("sono nell'else e il click è " + click)
+        // } else {
+        //     imageDivOut.classList.remove(`selected`);
+        //     imageDivIn.classList.remove('selected');
+        //     click = true;        
+        //     console.log("sono nell'undefined e il click è " + click)
+
+        // };
+
+
+    //     let thumbClassExist = document.getElementsByClassName(`this${i}`).length > 0;
+    //     console.log(thumbClassExist);
+
+    //     if( thumbClassExist){
+    //         console.log('ciao');
+    //         imageDiv.classList.remove(`.id-${i}`, `selected`);
+    //         imageDiv.classList.add(`.id-${2}`, `selected`);
+    //     } else {
+    //         console.log('arrivederci');
+    //     }
     });
 
     // //testo
@@ -65,6 +105,8 @@ images.forEach((elm, i) => {
     carouseljs.querySelector(`.description-${i}`).appendChild( descr );
 });
 
+
+// VERSIONE CICLO FOR
 
 // for (let i = 0; i < images.length; i++){
 //     console.log(images[i].image);
@@ -90,7 +132,8 @@ images.forEach((elm, i) => {
 //     carouseljs.querySelector(`.description-${i}`).appendChild( descr );
 // }
 
-let active= 0;
+
+// COMANDI CAROSELLO
 
 carouseljs.querySelector('.arrow-up').addEventListener('click', function() {
     console.log('clickup');
@@ -119,6 +162,8 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
     }
 );
 
+// COMANDI LOOP E INVERSE LOOP
+
 let up;
 let autoplay;
 let stopauto;
@@ -135,6 +180,10 @@ stopBtn.addEventListener('click', function(){
 inverseBtn.addEventListener('click', function(){
     inverseLoop();
 });
+
+
+// FUNZIONI
+
 
 function loopup() {
     console.log('clickup');
@@ -176,10 +225,6 @@ function inverseLoop() {
         console.log(up);
     }
 }
-
-// function loopStop(x) {
-//     clearInterval(x);
-//   }
 
     
 carouselContainer.append(carouseljs);
