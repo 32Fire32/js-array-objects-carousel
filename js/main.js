@@ -41,18 +41,21 @@ let stopBtn = carouseljs.querySelector('.btn-stop');
 let inverseBtn = carouseljs.querySelector('.btn-inverse');
 
 
+
 for (let i = 0; i < images.length; i++){
     console.log(images[i].image);
 
     //immagini principali
     let dinamicImage = carouseljs.querySelector(`.id-${i} img`);
-    carouseljs.querySelector(`.id-${i} img`).src = images[i].image;
+    dinamicImage.src = images[i].image;
 
-    //thumbnails    
+    //thumbnails
+    let imageDiv = carouseljs.querySelector(`.id-${i}`);
     carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
     carouseljs.querySelector(`.thumb-${i}`).addEventListener('click', function(){
         console.log(`thumbclicked ${i}`);
-        dinamicImage.src = images[i].image;
+        imageDiv.classList.remove(`.id-${i}`);
+        // imageDiv.classList.add('selected');
     })
 
     // //testo
@@ -91,6 +94,7 @@ carouseljs.querySelector('.arrow-down').addEventListener('click', function() {
         thumbimage[active].classList.add('thumbselected');
     }
 );
+
 let up;
 let autoplay;
 let stopauto;
@@ -100,6 +104,8 @@ startBtn.addEventListener('click', function(){
 
 stopBtn.addEventListener('click', function(){
     clearInterval(autoplay);
+    clearInterval(stopauto);
+
 });
 
 inverseBtn.addEventListener('click', function(){

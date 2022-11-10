@@ -50,17 +50,17 @@ body {
     right: 10px;
 }
 
-.thumbnails img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-    object-position: center;
-}
-
 .main-image {
     width: 70%;
     height: 100%;
+}
+
+.thumbnails img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    object-position: center;
 }
 
 .thumbnails {
@@ -70,6 +70,11 @@ body {
 
 .thumbnails img:hover {
     border: 2px solid red;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 20%;
 }
 
 .thumbselected {
