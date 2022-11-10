@@ -41,9 +41,8 @@ let stopBtn = carouseljs.querySelector('.btn-stop');
 let inverseBtn = carouseljs.querySelector('.btn-inverse');
 
 
-
-for (let i = 0; i < images.length; i++){
-    console.log(images[i].image);
+images.forEach((elm, i) => {
+    console.log(elm.image);
 
     //immagini principali
     let dinamicImage = carouseljs.querySelector(`.id-${i} img`);
@@ -51,20 +50,45 @@ for (let i = 0; i < images.length; i++){
 
     //thumbnails
     let imageDiv = carouseljs.querySelector(`.id-${i}`);
-    carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
+    carouseljs.querySelector(`.thumb-${i} img`).src = elm.image;
     carouseljs.querySelector(`.thumb-${i}`).addEventListener('click', function(){
         console.log(`thumbclicked ${i}`);
-        imageDiv.classList.remove(`.id-${i}`);
+        imageDiv.classList.remove(`.id-${i}`);           
         // imageDiv.classList.add('selected');
-    })
+    });
 
     // //testo
-    let title = document.createTextNode( images[i].title );
+    let title = document.createTextNode( elm.title );
     carouseljs.querySelector(`.title-${i}`).appendChild( title );
 
-    let descr = document.createTextNode( images[i].text );
+    let descr = document.createTextNode( elm.text );
     carouseljs.querySelector(`.description-${i}`).appendChild( descr );
-}
+});
+
+
+// for (let i = 0; i < images.length; i++){
+//     console.log(images[i].image);
+
+//     //immagini principali
+//     let dinamicImage = carouseljs.querySelector(`.id-${i} img`);
+//     dinamicImage.src = images[i].image;
+
+//     //thumbnails
+//     let imageDiv = carouseljs.querySelector(`.id-${i}`);
+//     carouseljs.querySelector(`.thumb-${i} img`).src = images[i].image;
+//     carouseljs.querySelector(`.thumb-${i}`).addEventListener('click', function(){
+//         console.log(`thumbclicked ${i}`);
+//         imageDiv.classList.remove(`.id-${i}`);           
+//         // imageDiv.classList.add('selected');
+//     })
+
+//     // //testo
+//     let title = document.createTextNode( images[i].title );
+//     carouseljs.querySelector(`.title-${i}`).appendChild( title );
+
+//     let descr = document.createTextNode( images[i].text );
+//     carouseljs.querySelector(`.description-${i}`).appendChild( descr );
+// }
 
 let active= 0;
 
