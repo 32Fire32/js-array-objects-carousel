@@ -29,11 +29,12 @@ const images = [
 
 // template
 const carouseljs = document.getElementById("carousel-template").content.cloneNode(true);
+let carouselContainer = document.querySelector('.container');
+
 
 let mainImage = carouseljs.querySelectorAll('.hid');
 let thumbimage = carouseljs.querySelectorAll('.thumbnail');
 
-let carouselContainer = document.querySelector('.container');
 
 let startBtn = carouseljs.querySelector('.btn-start');
 let stopBtn = carouseljs.querySelector('.btn-stop');
@@ -41,9 +42,10 @@ let inverseBtn = carouseljs.querySelector('.btn-inverse');
 
 let active= 0;
 
+
 // VERSIONE CICLO FOREACH
 images.forEach((elm, i) => {
-    console.log(elm.image);
+
 
     //immagini principali
     let dinamicImage = carouseljs.querySelector(`.id-${i} img`);
@@ -51,51 +53,6 @@ images.forEach((elm, i) => {
 
     //thumbnails
     carouseljs.querySelector(`.thumb-${i} img`).src = elm.image;
-
-    let thumb = carouseljs.querySelector(`.thumb-${i}`);
-
-    let imageDivOut = carouseljs.querySelector(`.main-image`);
-    let imageDivIn = carouseljs.querySelector(`.id-${i}`);
-
-    let click;
-    thumb.addEventListener('click', function(){
-        console.log(i);
-        // thumb.classList.toggle(`this${thumbClickEvent}`);
-        // console.log(selectedImg);
-        // imageDivOut.classList.remove(`selected`);
-        // console.log("sono fuori dalla condizione e il click è " + click);
-
-        // if (click === true){
-        //     click = false;
-        //     console.log("sono nell'if e il click è " + click)
-        //     imageDivOut.classList.remove(`selected`);                  
-        //     imageDivIn.classList.add('selected');
-
-        // } else if (click === false) {      
-        //     imageDivOut.classList.remove(`selected`);                  
-        //     imageDivIn.classList.add('selected');
-        //     click = true;
-        //     console.log("sono nell'else e il click è " + click)
-        // } else {
-        //     imageDivOut.classList.remove(`selected`);
-        //     imageDivIn.classList.remove('selected');
-        //     click = true;        
-        //     console.log("sono nell'undefined e il click è " + click)
-
-        // };
-
-
-    //     let thumbClassExist = document.getElementsByClassName(`this${i}`).length > 0;
-    //     console.log(thumbClassExist);
-
-    //     if( thumbClassExist){
-    //         console.log('ciao');
-    //         imageDiv.classList.remove(`.id-${i}`, `selected`);
-    //         imageDiv.classList.add(`.id-${2}`, `selected`);
-    //     } else {
-    //         console.log('arrivederci');
-    //     }
-    });
 
     // //testo
     let title = document.createTextNode( elm.title );
@@ -226,6 +183,29 @@ function inverseLoop() {
     }
 }
 
-    
+function thumbClick(){
+    images.forEach((elem, index) => {
+        let plus = index + 2;
+        let preview = document.querySelector(`.thumb-${index}`);
+        preview.addEventListener('click', function(){
+            if ( !this.classList.contains('thumbselected') ){
+                for ( let i = 1; i < images.length + 1; i++ ){
+                    document.querySelector(`.thumbnail:nth-child(${i})`).classList.remove('thumbselected');
+                }
+                this.classList.add('thumbselected');
+                for ( let i = 2; i < images.length + 2; i++ ){
+                    document.querySelector(`.main-image:nth-child(${i})`).classList.remove('selected');
+                }
+                document.querySelector(`.main-image:nth-child(${plus})`).classList.add('selected');
+            }
+        })
+    });
+
+}
+
 carouselContainer.append(carouseljs);
+    
+thumbClick();
+
+
 
